@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import html2canvas from 'html2canvas';
 import type { FightResult } from '../types';
 
@@ -7,7 +7,7 @@ interface ResultCardProps {
   onExport?: (imageUrl: string) => void;
 }
 
-export const ResultCard: React.FC<ResultCardProps> = ({ result, onExport }) => {
+export const ResultCard = ({ result, onExport }:ResultCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
   const handleExport = async () => {
