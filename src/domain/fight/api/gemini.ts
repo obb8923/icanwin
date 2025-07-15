@@ -1,16 +1,12 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import type { UserInfo, GeminiResponse } from '../types';
 import { GEMINI_PROMPT } from '../../../shared/constants';
-
-// 실제 사용시에는 환경변수로 관리해야 합니다
-const API_KEY = 'YOUR_GEMINI_API_KEY'; // 실제 API 키로 교체 필요
-
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 export const analyzeFightChance = async (userInfo: UserInfo): Promise<GeminiResponse> => {
   try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
-
+    const model = genAI.getGenerativeModel({ model: 'models/gemini-2.5-flash' });
     const prompt = `${GEMINI_PROMPT}
 
 사용자 설명:
@@ -26,7 +22,7 @@ JSON 형식으로 응답해주세요.`;
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
-    
+    console.log('text: ',text);
     // JSON 파싱 시도
     try {
       const jsonMatch = text.match(/\{[\s\S]*\}/);

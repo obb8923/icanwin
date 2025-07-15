@@ -1,6 +1,10 @@
 import { InputForm } from '../components/InputForm';
+import { analyzeFightChance } from '../api/gemini';
+import {useState} from 'react'
+import type { GeminiResponse } from '../types';
 
 export const FightPage = () => {
+  const [AIResult,setAIResult] = useState<GeminiResponse|null>(null);
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-100 to-emerald-100">
         {/* 카드 */}
@@ -20,7 +24,13 @@ export const FightPage = () => {
           </p>
 
             {/* 입력 폼 */}
-            <InputForm onSubmit={() => {}} />
+            <InputForm onSubmit={async (userInfo) => {
+              const result = await analyzeFightChance(userInfo);
+              setAIResult(result);
+            }} />
+            <p>{AIResult?.winRate}</p>
+            <p>{AIResult?.dominanceScore}</p>
+            <p>{AIResult?.explanation}</p>
         </div>
     </div>
   );
