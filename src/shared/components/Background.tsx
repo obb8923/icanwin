@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import img1 from "../../assets/imgs/1.png";
-import img2 from "../../assets/imgs/2.png";
-import img3 from "../../assets/imgs/3.png";
-import img4 from "../../assets/imgs/4.png";
-import img5 from "../../assets/imgs/5.png";
+import img1 from "../../assets/imgs/1.webp";
+import img2 from "../../assets/imgs/2.webp";
+import img3 from "../../assets/imgs/3.webp";
+import img4 from "../../assets/imgs/4.webp";
+import img5 from "../../assets/imgs/5.webp";
 
 const images = [img1, img2, img3, img4, img5];
 const INTERVAL = 5000; // ms

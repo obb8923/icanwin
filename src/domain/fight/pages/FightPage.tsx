@@ -22,7 +22,7 @@ export const FightPage = () => {
           style={{ boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.18)' }}
         >
           {!AIResult && 
-          <div className="p-4 sm:p-6 md:p-12">
+          <div className="w-full p-4 sm:p-6 md:p-12">
           <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 text-center tracking-tight drop-shadow">
             🐆 치타와의 싸움
           </h1>
