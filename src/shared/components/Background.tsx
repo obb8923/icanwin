@@ -6,19 +6,16 @@ import img4 from "../../assets/imgs/4.png";
 import img5 from "../../assets/imgs/5.png";
 
 const images = [img1, img2, img3, img4, img5];
-const INTERVAL = 7000; // ms
+const INTERVAL = 5000; // ms
 const FADE_DURATION = 1000; // ms
 
 export const Background = ({ children }: { children?: React.ReactNode }) => {
   const [current, setCurrent] = useState(0);
-  const [fade, setFade] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    setFade(true);
     timeoutRef.current = setTimeout(() => {
       setCurrent((prev) => (prev + 1) % images.length);
-      setFade(false);
     }, INTERVAL);
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
