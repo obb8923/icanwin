@@ -79,12 +79,6 @@ export const FightPage = () => {
         {/* 버튼 영역 */}
         {AIResult && (
           <div className="w-full max-w-lg md:max-w-2xl lg:max-w-xl flex justify-between items-center gap-4">
-            {/* <button
-              className="flex-1  mt-2 px-4 py-2 bg-white text-gray-900 rounded-xl hover:bg-gray-300 transition-colors"
-              onClick={() => {}}
-            >
-              공유하기
-            </button> */}
             <button
               className="flex-1 mt-2 px-4 py-2 bg-white text-gray-900 rounded-xl hover:bg-gray-300 transition-colors"
               onClick={() => { setAIResult(null); setUserNickname(''); }}
