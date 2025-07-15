@@ -7,4 +7,5 @@ export interface GeminiResponse {
   winRate: number;
   dominanceScore: number;
   explanation: string;
+  error:boolean
 } 

@@ -1,9 +1,9 @@
 import { InputForm } from '../components/InputForm';
 import { analyzeFightChance } from '../api/gemini';
-import {useState} from 'react'
+import { useState } from 'react';
 import type { GeminiResponse } from '../types';
-import type { UserInfo } from '../types';
 import { Background } from '../../../shared/components/Background';
+import { insertCheetah } from '../../../shared/utils/supabaseOperations/insertCheetah';
 
 export const FightPage = () => {
   const [AIResult,setAIResult] = useState<GeminiResponse|null>(null);
@@ -27,7 +27,7 @@ export const FightPage = () => {
             🐆 치타와의 싸움
           </h1>
           <p className="text-base md:text-lg text-gray-700 mb-8 text-center">
-            자신을 설명하면 AI가 치타와의 싸움에서 승률을 계산해드립니다
+            치타와의 싸움을 시뮬레이션 해보세요
           </p>
 
             {/* 입력 폼 */}
@@ -38,6 +38,15 @@ export const FightPage = () => {
                   const result = await analyzeFightChance(userInfo);
                   setAIResult(result);
                   setUserNickname(userInfo.nickname);
+                  if(!result.error){
+                  // DB 저장
+                  await insertCheetah({
+                    nickname: userInfo.nickname,
+                    win_rate: result.winRate,
+                    dominance_score: result.dominanceScore,
+                    explanation: result.explanation,
+                  });
+                }
                 } finally {
                   setIsLoading(false);
                 }

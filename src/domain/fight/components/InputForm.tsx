@@ -39,7 +39,9 @@ export const InputForm = ({ onSubmit, isLoading = false }:InputFormProps) => {
           <textarea
               id="description"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-full"
-              placeholder="키, 몸무게, 나이, 성별, 운동경력 등 자유롭게 작성해주세요"
+              placeholder="형은 키178m몸무게70g보다시피 건장한 체격이다.
+나로 말하자면 검도5단 태권도 4단 합기도3단 주부9단 눈치100단 무단횡단 자진모리장단 바위처럼단단 로켓단 복싱6년 도배2년 우유배달6년 애니팡8만점 무에타이14년 포장이사5년으로 보다시피 살아있는 인간변기라 할수있지.
+또한 잇몸일으키기분당300회 발굽혀펴기 분당200회를 할수있다."
               required
               value={description}
               onChange={(e) => setDescription(e.target.value)}

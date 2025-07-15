@@ -16,7 +16,7 @@ export const analyzeFightChance = async (userInfo: UserInfo): Promise<GeminiResp
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
-    console.log('text: ',text);
+    // console.log('text: ',text);
     // JSON 파싱 시도
     try {
       const jsonMatch = text.match(/\{[\s\S]*\}/);
@@ -24,8 +24,9 @@ export const analyzeFightChance = async (userInfo: UserInfo): Promise<GeminiResp
         const parsed = JSON.parse(jsonMatch[0]);
         return {
           winRate: Math.min(100, Math.max(0, parsed.winRate || 0)),
-          dominanceScore: parsed.winRate === 100 ? Math.min(50, Math.max(0, parsed.dominanceScore || 0)) : 0,
+          dominanceScore: parsed.dominanceScore,
           explanation: parsed.explanation || '평가 완료',
+          error:parsed.error
         };
       }
     } catch (parseError) {
@@ -37,6 +38,7 @@ export const analyzeFightChance = async (userInfo: UserInfo): Promise<GeminiResp
       winRate: 50,
       dominanceScore: 0,
       explanation: 'AI 평가 중 오류가 발생했습니다.',
+      error:true
     };
   } catch (error) {
     console.error('Gemini API 호출 실패:', error);
@@ -44,6 +46,7 @@ export const analyzeFightChance = async (userInfo: UserInfo): Promise<GeminiResp
       winRate: 50,
       dominanceScore: 0,
       explanation: 'AI 서비스 연결에 실패했습니다.',
+      error:true
     };
   }
 }; 
