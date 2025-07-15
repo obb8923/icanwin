@@ -11,13 +11,8 @@ export const analyzeFightChance = async (userInfo: UserInfo): Promise<GeminiResp
 
 사용자 설명:
 ${userInfo.description}
-
-위 설명에서 다음 정보를 추출하고 분석해주세요:
-- 키, 몸무게, 나이, 성별
-- 운동경력이나 특별한 능력
-- 기타 관련 정보
-
-JSON 형식으로 응답해주세요.`;
+${GEMINI_PROMPT}
+`;
 
     const result = await model.generateContent(prompt);
     const response = await result.response;
