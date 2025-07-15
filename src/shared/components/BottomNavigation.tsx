@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const navItems = [
@@ -6,7 +5,7 @@ const navItems = [
   { label: '랭킹', path: '/ranking', icon: '🏆' },
 ];
 
-const BottomNavigation: React.FC = () => {
+export const BottomNavigation= () => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -20,8 +19,11 @@ const BottomNavigation: React.FC = () => {
       display: 'flex',
       justifyContent: 'space-around',
       alignItems: 'center',
-      background: '#fff',
-      borderTop: '1px solid #eee',
+      background: 'rgba(255, 255, 255, 0.25)', // 글래스모피즘 배경
+      borderTop: '1px solid rgba(255, 255, 255, 0.3)', // 글래스모피즘 테두리
+      boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)', // 글래스모피즘 그림자
+      backdropFilter: 'blur(10px)', // 글래스모피즘 블러
+      WebkitBackdropFilter: 'blur(10px)', // 사파리 지원
       zIndex: 100,
     }}>
       {navItems.map((item) => (
@@ -34,7 +36,7 @@ const BottomNavigation: React.FC = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            color: location.pathname === item.path ? '#2563eb' : '#888',
+            color: location.pathname === item.path ? '#000' : '#888',
             fontWeight: location.pathname === item.path ? 'bold' : 'normal',
             fontSize: '16px',
             cursor: 'pointer',
@@ -47,5 +49,3 @@ const BottomNavigation: React.FC = () => {
     </nav>
   );
 };
-
-export default BottomNavigation; 
