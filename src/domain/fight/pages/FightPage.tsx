@@ -11,17 +11,18 @@ export const FightPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   return (
     <Background>
-    <div className="flex justify-center items-center min-h-screen">
+    <div className="flex flex-1 flex-col justify-center items-center ">
         {/* 카드 */}
         <div
           className="w-full max-w-lg md:max-w-2xl lg:max-w-xl
           bg-white/30 backdrop-blur-md
           rounded-2xl shadow-2xl border border-white/40
-          p-4 sm:p-6 md:p-12 flex flex-col items-center
+          flex flex-col items-center
           mx-1 sm:mx-4 md:mx-0"
           style={{ boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.18)' }}
         >
-          {!AIResult && <>
+          {!AIResult && 
+          <div className="p-4 sm:p-6 md:p-12">
           <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 text-center tracking-tight drop-shadow">
             🐆 치타와의 싸움
           </h1>
@@ -43,10 +44,10 @@ export const FightPage = () => {
               }} 
               isLoading={isLoading}
             />
-            </>
+            </div>
           }
           {AIResult && (
-            <div className="w-full max-h-80 overflow-y-auto p-4 bg-white/60 rounded-lg mb-4 flex flex-col gap-4">
+            <div className="w-full h-full overflow-y-auto p-4 bg-white/60 rounded-lg  flex flex-col gap-4">
               <div className="text-2xl font-extrabold text-center mb-2">
                 {userNickname} vs 치타
               </div>
@@ -63,16 +64,26 @@ export const FightPage = () => {
               </div>
             </div>
           )}
-          {AIResult && (
+         
+           
+        </div>
+        {/* 버튼 영역 */}
+        {AIResult && (
+          <div className="w-full max-w-lg md:max-w-2xl lg:max-w-xl flex justify-between items-center gap-4">
             <button
-              className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+              className="flex-1  mt-2 px-4 py-2 bg-white text-gray-900 rounded hover:bg-gray-300 transition-colors"
+              onClick={() => {}}
+            >
+              공유하기
+            </button>
+            <button
+              className="flex-1 mt-2 px-4 py-2 bg-white text-gray-900 rounded hover:bg-gray-300 transition-colors"
               onClick={() => { setAIResult(null); setUserNickname(''); }}
             >
               다시하기
             </button>
+            </div>
           )}
-           
-        </div>
     </div>
     </Background>
   );

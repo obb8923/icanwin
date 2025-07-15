@@ -9,11 +9,10 @@ export const analyzeFightChance = async (userInfo: UserInfo): Promise<GeminiResp
     const model = genAI.getGenerativeModel({ model: 'models/gemini-2.5-flash' });
     const prompt = `${GEMINI_PROMPT}
 
-사용자 설명:
-${userInfo.description}
-${GEMINI_PROMPT}
+    ${GEMINI_PROMPT}
+    ${userInfo.description}
+  }
 `;
-
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
