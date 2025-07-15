@@ -50,7 +50,7 @@ export const InputForm = ({ onSubmit, isLoading = false }:InputFormProps) => {
             disabled={isLoading || !description.trim()}
             className="mt-4 w-full p-2.5 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800  disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
           >
-            결판내기
+            {isLoading ? '시뮬레이션 중..' : '결판내기'}
           </button>
         </form>
     </div>
